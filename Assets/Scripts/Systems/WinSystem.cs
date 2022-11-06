@@ -1,11 +1,13 @@
 using MyEcs;
 using EcsStructs;
+using UnityEngine;
 
 namespace EcsSystems
 {
     public class WinSystem : IUpd
     {
         Filter<WordCharData> wordCharFilter = null;
+        Filter<TryCounterData> tryFilter = null;
         SceneData _scene = null;
         LevelData _level = null;
 
@@ -18,13 +20,30 @@ namespace EcsSystems
             if (_isWin) return;
 
             _isWin = true;
+            int tryLeft = 0;
 
-            //TODO запись в SaveData;
-            //текущее слово и прибавить очки
+            foreach (var i in tryFilter)
+            {
+                ref var item = ref tryFilter.Get1(i);
+                tryLeft = item.tryLeft;
+                break;
+            }
 
-            if (false)
+            SaveService.AddCompletedWord(_level.Word, tryLeft);
+            var isEndOfGame = SaveService.WordsCompleted == SaveService.AllWordsCount;
+
+            var currScore = SaveService.Score;
+            var hightScore = PlayerPrefs.GetInt("HightScore", 0);
+            if (currScore > hightScore)
+            {
+                PlayerPrefs.SetInt("HightScore", currScore);
+                hightScore = currScore;
+            }
+
+            if (isEndOfGame)
             {
                 _scene.GameWinPanel.SetActive(true);
+                SaveService.NewGame(0);
             }
             else
             {

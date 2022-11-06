@@ -16,8 +16,14 @@ public class World : MonoBehaviour
     EcsWorld _world;
     EcsSystem _upd;
 
+    // *** Тому кто будет проверять этот код ***
+    // Сюда дублируется список всех слов, которые были получены из текста
+    public string[] AllWords;
+
     void Start()
     {
+        AllWords = SaveService.GetAllWords();
+
         if (Level != null)
         {
             level = Level;

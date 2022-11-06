@@ -8,5 +8,5 @@ public class SaveData
 {
     public int Score;
     public int Seed;
-    public int CompletedLevels;
+    public int[] CompletedWords;
 }

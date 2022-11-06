@@ -8,6 +8,7 @@ public class SceneData : MonoBehaviour
     public GameObject GameWinPanel;
     public GameObject LevelWinPanel;
     public GameObject FailPanel;
+    public GameObject FailPanelNewHightScore;
 
     public Text ScoreCount;
     public Text TryCount;

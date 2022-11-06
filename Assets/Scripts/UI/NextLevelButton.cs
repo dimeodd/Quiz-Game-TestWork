@@ -14,7 +14,7 @@ public class NextLevelButton : MonoBehaviour
     void LoadMenu()
     {
         var level = new LevelData();
-        level.Word = "TODOwordFromSaveService"; //TODO получить из сохранениея следующее слово
+        level.Word = SaveService.GetNextWord();
         World.Level = level;
 
         SceneManager.LoadScene(1);
