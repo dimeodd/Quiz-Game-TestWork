@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class LevelsTotalScript : MonoBehaviour
 {
-    private void OnEnable()
+    void Start()
     {
         var txt = GetComponent<Text>();
         txt.text = SaveService.GetLevelsCounterLabel();

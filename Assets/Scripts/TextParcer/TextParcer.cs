@@ -31,7 +31,7 @@ public class TextParcer
         //К примеру он выберет слова(символы отрежет): Alisa; --Alisa; --Alisa--; Alisa--;
         //Но проигнорирует: Alisa's; Smart-Alisa; Smart--"Alisa;
         var regex = new Regex(
-                @"/(?<=^[^a-zA-Z]*)[a-zA-Z]+(?=[^a-zA-Z]*\s)|(?<=\s[^a-zA-Z]*)[a-zA-Z]+(?=[^a-zA-Z]*\s)|(?<=\s[^a-zA-Z]*)[a-zA-Z]+(?=[^a-zA-Z]*$)/g",
+                @"/^[a-zA-Z]+(?=[^a-zA-Z]*\s)|(?<=^[^a-zA-Z]*)[a-zA-Z]+(?=[^a-zA-Z]*\s)|(?<=\s[^a-zA-Z]*)[a-zA-Z]+(?=[^a-zA-Z]*\s)|(?<=\s[^a-zA-Z]*)[a-zA-Z]+(?=[^a-zA-Z]*$)/g",
                 RegexOptions.Compiled
             );
 
