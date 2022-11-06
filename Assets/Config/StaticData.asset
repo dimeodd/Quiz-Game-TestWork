@@ -17,6 +17,9 @@ MonoBehaviour:
   TryCount: 10
   LetterPrefab: {fileID: 4185943745109143637, guid: 426ea8d03370dfd4dac13f2635d5f623,
     type: 3}
+  WordPrefab: {fileID: 73256948080404330, guid: 4e1b576d5a9b0b5459c37d8b1e817503,
+    type: 3}
   RightColor: {r: 0.5625, g: 0.75, b: 0.5625, a: 1}
   WrongColor: {r: 0.5, g: 0.25, b: 0.25, a: 1}
   LetterSpacing: 5
+  WordSpacing: 5

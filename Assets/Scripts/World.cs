@@ -10,23 +10,16 @@ public class World : MonoBehaviour
     public LevelData Level;
     public SceneData Scene;
 
-    [Header("Все слова")]
-    //Специально оставил тут для того, чтобы можно было проверить список всех слов из текста в редакторе
-    public string[] Words;
-
     EcsWorld _world;
     EcsSystem _allSys, _upd, _fixUpd;
 
     void Start()
     {
-        var parcer = new TextParcer(StaticData.SourceText.text, StaticData.MinWordLength);
-        Words = parcer.GetResult();
-
         _world = new EcsWorld();
 
         _upd = new EcsSystem(_world)
             .Add(new InitLettersSystem())
-            ;
+            .Add(new InitWordSystem());
 
         _fixUpd = new EcsSystem(_world);
 
@@ -34,6 +27,7 @@ public class World : MonoBehaviour
             .Add(_upd)
             .Add(_fixUpd)
             .Inject(StaticData)
+            .Inject(Level)
             .Inject(Scene);
         _allSys.Init();
     }
