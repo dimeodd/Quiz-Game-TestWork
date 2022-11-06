@@ -15,3 +15,8 @@ MonoBehaviour:
   SourceText: {fileID: 4900000, guid: 0590fab35b326fe41b8d6cb0fc484c5a, type: 3}
   MinWordLength: 3
   TryCount: 10
+  LetterPrefab: {fileID: 4185943745109143637, guid: 426ea8d03370dfd4dac13f2635d5f623,
+    type: 3}
+  RightColor: {r: 0.5625, g: 0.75, b: 0.5625, a: 1}
+  WrongColor: {r: 0.5, g: 0.25, b: 0.25, a: 1}
+  LetterSpacing: 5

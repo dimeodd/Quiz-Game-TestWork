@@ -8,4 +8,15 @@ public class StaticData : ScriptableObject
     public TextAsset SourceText;
     public int MinWordLength;
     public int TryCount;
+
+    [Header("Prefabs")]
+    public GameObject LetterPrefab;
+
+    [Header("Graphic")]
+    public Color RightColor;
+    public Color WrongColor;
+    public float LetterSpacing;
+
+    public const float gridWidth = 5;
+    public const float gridHeight = 6;
 }
