@@ -34,6 +34,14 @@ public static class SaveService
     public static int WordsCompleted => _save.CompletedWords.Length;
     public static int Score => _save.Score;
 
+    public static string GetLevelsCounterLabel()
+    {
+        return string.Format(
+            "{0}/{1}",
+            _save.CompletedWords.Length,
+            _words.Length
+        );
+    }
     public static int GetHightScore()
     {
         return PlayerPrefs.GetInt("HightScore", 0);
@@ -55,6 +63,8 @@ public static class SaveService
     {
         var wordId = Array.FindIndex(_words, 0, _words.Length, x => x == word);
         if (wordId == -1) return;
+
+        _save.Score += tryLeft;
 
         Array.Resize(ref _save.CompletedWords, _save.CompletedWords.Length + 1);
         _save.CompletedWords[_save.CompletedWords.Length - 1] = wordId;

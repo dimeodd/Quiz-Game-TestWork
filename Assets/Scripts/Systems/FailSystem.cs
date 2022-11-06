@@ -27,10 +27,9 @@ namespace EcsSystems
             if (currScore > hightScore)
             {
                 SaveService.SetHightScore(currScore);
-                hightScore = currScore;
-                provider.NewHightScore.SetActive(true);
             }
 
+            provider.ScoreText.text = SaveService.Score.ToString();
             provider.wordText.text = _level.Word;
             provider.gameObject.SetActive(true);
 

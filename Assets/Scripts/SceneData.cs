@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SceneData : MonoBehaviour
 {
-    public GameObject GameWinPanel;
+    public GameWinProvider GameWinPanel;
     public GameObject LevelWinPanel;
     public FailPanelProvider FailPanel;
 

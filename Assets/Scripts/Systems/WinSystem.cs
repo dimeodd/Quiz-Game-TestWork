@@ -42,12 +42,13 @@ namespace EcsSystems
 
             if (isEndOfGame)
             {
-                _scene.GameWinPanel.SetActive(true);
+                _scene.GameWinPanel.ScoreText.text = SaveService.Score.ToString();
+                _scene.GameWinPanel.gameObject.SetActive(true);
                 SaveService.NewGame(0);
             }
             else
             {
-                _scene.LevelWinPanel.SetActive(true);
+                _scene.LevelWinPanel.gameObject.SetActive(true);
             }
         }
     }
