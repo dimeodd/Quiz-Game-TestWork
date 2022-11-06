@@ -8,6 +8,7 @@ namespace EcsSystems
     {
         Filter<FailTag> failFilter = null;
         SceneData _scene = null;
+        LevelData _level = null;
 
         bool isFail = false;
 
@@ -19,18 +20,22 @@ namespace EcsSystems
 
             isFail = true;
 
+            var provider = _scene.FailPanel;
+
             var currScore = SaveService.Score;
-            var hightScore = PlayerPrefs.GetInt("HightScore", 0);
+            var hightScore = SaveService.GetHightScore();
             if (currScore > hightScore)
             {
-                PlayerPrefs.SetInt("HightScore", currScore);
+                SaveService.SetHightScore(currScore);
                 hightScore = currScore;
-                _scene.FailPanelNewHightScore.SetActive(true);
+                provider.NewHightScore.SetActive(true);
             }
+
+            provider.wordText.text = _level.Word;
+            provider.gameObject.SetActive(true);
 
             SaveService.NewGame(0);
 
-            _scene.FailPanel.SetActive(true);
         }
     }
 }

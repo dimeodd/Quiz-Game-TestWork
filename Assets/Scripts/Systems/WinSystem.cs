@@ -33,7 +33,7 @@ namespace EcsSystems
             var isEndOfGame = SaveService.WordsCompleted == SaveService.AllWordsCount;
 
             var currScore = SaveService.Score;
-            var hightScore = PlayerPrefs.GetInt("HightScore", 0);
+            var hightScore = SaveService.GetHightScore();
             if (currScore > hightScore)
             {
                 PlayerPrefs.SetInt("HightScore", currScore);

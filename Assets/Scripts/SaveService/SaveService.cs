@@ -34,6 +34,16 @@ public static class SaveService
     public static int WordsCompleted => _save.CompletedWords.Length;
     public static int Score => _save.Score;
 
+    public static int GetHightScore()
+    {
+        return PlayerPrefs.GetInt("HightScore", 0);
+    }
+    public static void SetHightScore(int score)
+    {
+        PlayerPrefs.SetInt("HightScore", score);
+        PlayerPrefs.Save();
+    }
+
     public static void NewGame(int seed)
     {
         _save = new SaveData();
@@ -44,6 +54,7 @@ public static class SaveService
     public static void AddCompletedWord(string word, int tryLeft)
     {
         var wordId = Array.FindIndex(_words, 0, _words.Length, x => x == word);
+        if (wordId == -1) return;
 
         Array.Resize(ref _save.CompletedWords, _save.CompletedWords.Length + 1);
         _save.CompletedWords[_save.CompletedWords.Length - 1] = wordId;
@@ -87,7 +98,7 @@ public static class SaveService
     static void Save()
     {
         var formatter = new BinaryFormatter();
-        using (var fs = new FileStream("people.dat", FileMode.OpenOrCreate))
+        using (var fs = new FileStream(savePath, FileMode.OpenOrCreate))
         {
             formatter.Serialize(fs, _save);
         }
