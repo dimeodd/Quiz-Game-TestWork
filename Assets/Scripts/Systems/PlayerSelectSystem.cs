@@ -34,13 +34,15 @@ namespace EcsSystems
                 select.provider.Button.enabled = false;
                 if (contain)
                 {
-                    select.provider.Text.color = _stData.RightColor;
-                    select.provider.Image.color = _stData.RightColor;
+                    select.provider.gameObject.SetActive(false);
+                    // select.provider.Text.color = _stData.RightColor;
+                    // select.provider.Image.color = _stData.RightColor;
                 }
                 else
                 {
-                    select.provider.Text.color = _stData.WrongColor;
-                    select.provider.Image.color = _stData.WrongColor;
+                    select.provider.gameObject.SetActive(false);
+                    // select.provider.Text.color = _stData.WrongColor;
+                    // select.provider.Image.color = _stData.WrongColor;
 
                     var removeEnt = _world.NewEntity();
                     removeEnt.Get<RemoveTryTag>();
