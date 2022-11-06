@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class SceneData : MonoBehaviour
 {
+    public GameObject GameWinPanel;
+    public GameObject LevelWinPanel;
+    public GameObject FailPanel;
+
     public Text ScoreCount;
     public Text TryCount;
     public RectTransform LetterGrid;

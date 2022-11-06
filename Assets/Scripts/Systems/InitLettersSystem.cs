@@ -19,7 +19,6 @@ namespace EcsSystems
             var w = (rect.width - z) / StaticData.gridWidth;
             var h = (rect.height - z) / StaticData.gridHeight;
 
-
             for (int i = 0, ch = 'A'; i < 26; i++, ch++)
             {
                 var x = i % (int)StaticData.gridWidth * (w + space);
@@ -32,7 +31,19 @@ namespace EcsSystems
                 rTf.sizeDelta = new Vector2(w, h);
                 rTf.localPosition = new Vector3(x, y);
                 provider.Text.text = ((char)ch).ToString();
+
+                var ent = _world.NewEntity();
+                ref var data = ref ent.Get<LetterData>();
+                data.letter = (char)(ch + 32); //ToLower()
+                data.provider = provider;
+
+                provider.Button.onClick.AddListener(() => SelectLetter(ent));
             }
+        }
+
+        void SelectLetter(Entity ent)
+        {
+            ent.Get<SelectedTag>();
         }
     }
 }

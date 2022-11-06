@@ -3,42 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyEcs;
 using EcsSystems;
+using EcsStructs;
 
 public class World : MonoBehaviour
 {
-    public StaticData StaticData;
-    public LevelData Level;
-    public SceneData Scene;
+    public static LevelData Level;
+
+    public StaticData stData;
+    public LevelData level;
+    public SceneData scene;
 
     EcsWorld _world;
-    EcsSystem _allSys, _upd, _fixUpd;
+    EcsSystem _upd;
 
     void Start()
     {
+        if (Level != null)
+        {
+            level = Level;
+        }
+
         _world = new EcsWorld();
 
         _upd = new EcsSystem(_world)
             .Add(new InitLettersSystem())
-            .Add(new InitWordSystem());
+            .Add(new InitWordSystem())
 
-        _fixUpd = new EcsSystem(_world);
+            .Add(new PlayerSelectSystem())
+            .Add(new TryCounterSystem())
+            .Add(new OpenCharSystem())
+            .Add(new WinSystem())
+            .Add(new FailSystem())
 
-        _allSys = new EcsSystem(_world)
-            .Add(_upd)
-            .Add(_fixUpd)
-            .Inject(StaticData)
-            .Inject(Level)
-            .Inject(Scene);
-        _allSys.Init();
+            .OneFrame<OpenCharTag>()
+            .OneFrame<RemoveTryTag>()
+
+            .Inject(stData)
+            .Inject(level)
+            .Inject(scene);
+        _upd.Init();
     }
 
     void Update()
     {
-        // _upd.Upd();
-    }
-
-    void FixedUpdate()
-    {
-        // _fixUpd.Upd();
+        _upd.Upd();
     }
 }

@@ -13,7 +13,7 @@ namespace EcsSystems
 
         public void Init()
         {
-            var word = _level.Word;
+            var word = _level.Word.ToLower();
             var count = word.Length;
             var rect = _scene.WordSpace;
             var spacing = _stData.WordSpacing;
@@ -32,9 +32,12 @@ namespace EcsSystems
                 tf.localPosition = new Vector3(offset + i * (charWidth + spacing), 0);
                 var provider = go.GetComponent<WordProvider>();
                 provider.Text.text = word[i].ToString();
+                provider.Text.enabled = false;
 
-
-
+                var ent = _world.NewEntity();
+                ref var data = ref ent.Get<WordCharData>();
+                data.letter = word[i];
+                data.provider = provider;
             }
         }
     }
